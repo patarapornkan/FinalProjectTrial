@@ -5,7 +5,47 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-card>
-    <p>{{totalhours}}</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          Total Time Spent on Reading
+        </ion-col>
+        <ion-col>
+          Time until your GOAL
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{ totalTime[0] }}
+        </ion-col>
+        <ion-col>
+          {{ hrGoal[0]-totalTime[0]|number:'1.1-1' }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <canvas #doughnutChart></canvas>
   </ion-card>
+
+  <ion-card>
+    <h1>Time Spent On Reading{{ totalTime[0] }}</h1>
+    <h1>{{ totalTime.length }}</h1>
+  </ion-card>
+  <ion-card>
+    <h1>{{ bookNum[0] }}</h1>
+    <ion-label *ngFor='let book of bookNames'>{{ book }}</ion-label>
+  </ion-card>
+
+  <ion-card>
+    <h1>{{ numGoal[0] }}</h1>
+    <h1>Actual Time Spent on Reading{{ hrGoal[0] }}</h1>
+  </ion-card>
+
+  <ion-card>
+    <h1>{{ numGoal[0]-totalTime[0] }}</h1>
+    <h1></h1>
+  </ion-card>
+
+
 </ion-content>

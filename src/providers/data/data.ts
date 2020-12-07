@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
 import { Bookrecord } from '../../models/bookrecord.model';
+import { Time } from '../../models/timerecord.model';
+import { Bookname } from '../../models/booknames.model';
+import { Goals } from '../../models/goals.model';
+import 'rxjs/add/operator/map';
 
 /*
   Generated class for the DataProvider provider.
@@ -11,8 +14,9 @@ import { Bookrecord } from '../../models/bookrecord.model';
 */
 @Injectable()
 export class DataProvider {
-  private tempURL='http://32d5bfc5b151.ngrok.io/';
-
+  private tempURL='http://862b14e0d4ac.ngrok.io/';
+  
+  
   constructor(public http: HttpClient) {
     console.log('Hello DataProvider Provider');
   }
@@ -36,25 +40,87 @@ export class DataProvider {
     });
   }
 
-  getAllBooks(allBookData: any){
-    console.log("Provider going to getAllBooks");
-    return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe(data =>{
-      while(allBookData.length>0){
-        allBookData.pop();
+
+  // getAllBooks(allbookData: any){
+  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe(data=>{
+  //     for(let i=0; i<data.data.length; i++){
+  //       allbookData.push(data.data[i]);
+  //     }
+  //     console.log('here2');
+  //     console.log(allbookData);
+  //     console.log('here2');
+  //   });
+  // }
+  
+  
+
+  getAllBooksObs(){
+    return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe();
+  }
+
+
+
+  // getAllBooks(){
+  //   console.log("Provider going to getAllBooks");
+  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords');
+  // }
+    
+
+  // getAllBooks(){
+
+  //   console.log("Provider going to getAllBooks");
+  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords');
+  // }
+
+  getTotalTime(totalTime: any){
+    console.log("Provider going to getTotalHours");
+    return this.http.get<Time>(this.tempURL+'gettotalhrs').subscribe(data=>{
+      while(totalTime.length>0){
+        totalTime.pop();
       }
+      totalTime.push(data.totalhr);
+      //totalTime.push(data.totalmin);
 
-      for(let i=0; i<data.data.length; i++)
-        allBookData.push(data.data[i]);
-
+      console.log(totalTime);
     })
   }
 
-  getTotalHours(totalhours: any){
-    console.log("Provider going to getTotalHours");
-    return this.http.get<Bookrecord>(this.tempURL+'gettotalhrs').subscribe(data=>{
-      totalhours.push(data.data);
-      console.log(totalhours);
+  getBookNames(bookNames:any, bookNum: any){
+    return this.http.get<Bookname>(this.tempURL+'getbooknames').subscribe(data =>{
+      while(bookNames.length>0){
+        bookNames.pop();
+      }
+      while(bookNum.length>0){
+        bookNum.pop()
+      }
+
+      for(let i=0; i<data.allBooks.length; i++){
+        bookNames.push(data.allBooks[i]);
+      }
+
+      bookNum.push(data.num);
     })
+  }
+
+  updateGoals(newNum:number,newTime:number){
+    console.log('provider going to updateGoals');
+    let newgoals= newNum+'*'+newTime;
+    return this.http.get(this.tempURL+'updategoals?newgoals='+newgoals).subscribe();
+  }
+
+  getGoals(currentNum:any, currentHr:any){
+    console.log('provider going to getGoals');
+    return this.http.get<Goals>(this.tempURL+'getgoals').subscribe(data=>{
+      while(currentNum.length>0){
+        currentNum.pop();
+      }
+      while(currentHr.length>0){
+        currentHr.pop()
+      }
+      currentNum.push(data.numGoal);
+      currentHr.push(data.hrGoal);
+
+    });
   }
 
 }

@@ -9,11 +9,16 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddReadingPage } from '../pages/add-reading/add-reading';
 import { SearchBookPage } from '../pages/search-book/search-book';
+import { HistoryPage } from '../pages/history/history';
+import { SettingPage } from '../pages/setting/setting';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { AppResolverService } from '../providers/app-resolver/app-resolver.service';
+
 
 @NgModule({
   declarations: [
@@ -23,12 +28,15 @@ import { HttpClientModule } from '@angular/common/http'
     HomePage,
     TabsPage,
     AddReadingPage,
-    SearchBookPage
+    SearchBookPage,
+    HistoryPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+  
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,14 +46,18 @@ import { HttpClientModule } from '@angular/common/http'
     HomePage,
     TabsPage,
     AddReadingPage,
-    SearchBookPage
+    SearchBookPage,
+    HistoryPage,
+    SettingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    DataProvider
+    DataProvider,
+    AppResolverService,
+
   ]
 })
 export class AppModule {}
