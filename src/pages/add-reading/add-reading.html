@@ -1,0 +1,32 @@
+<!--
+  Generated template for the AddReadingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Reading</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-label>Date</ion-label>
+  <ion-datetime displayFormat="DD MMMM YYYY" placeholder="Date Month Year" [(ngModel)]=ymd></ion-datetime>
+
+  <ion-label>Day</ion-label>
+  <ion-input placeholder="Enter day of the week" [(ngModel)]="weekday"></ion-input>
+
+  <ion-label>Duration</ion-label>
+  <ion-input placeholder="Total minutes of reading" type="number" [(ngModel)]="duration"></ion-input>
+
+  <ion-label position="stacked">Name of the book</ion-label>
+  <ion-input placeholder="Enter name" [(ngModel)]="name"></ion-input>
+
+  <ion-label>Memo</ion-label>
+  <ion-textarea rows="7" placeholder="Your reflection/summary" [(ngModel)]="memo"></ion-textarea>
+
+  <button ion-button full (click)="addNewReading(weekday,duration,name,ymd,memo)">SAVE</button>
+
+</ion-content>
