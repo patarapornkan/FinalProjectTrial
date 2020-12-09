@@ -5,8 +5,8 @@ import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { AddReadingPage } from '../add-reading/add-reading';
 import { SearchBookPage } from '../search-book/search-book';
-import { HistoryPage } from '../history/history';
 import { SettingPage } from '../setting/setting';
+import { StatsPage } from '../stats/stats'
 
 
 @Component({
@@ -17,7 +17,7 @@ export class TabsPage {
   tab1Root = HomePage;
   tab2Root = AddReadingPage;
   tab3Root = SearchBookPage;
-  tab4Root = HistoryPage;
+  tab4Root = StatsPage;
   tab5Root = SettingPage;
 
   constructor() {

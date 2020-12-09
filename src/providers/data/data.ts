@@ -14,8 +14,8 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DataProvider {
-  private tempURL='http://862b14e0d4ac.ngrok.io/';
-  
+  public tempURL='http://908935ace8e5.ngrok.io/';
+  public getbooksprovider: any=[];
   
   constructor(public http: HttpClient) {
     console.log('Hello DataProvider Provider');
@@ -39,38 +39,31 @@ export class DataProvider {
         // console.log(bookListData);
     });
   }
-
-
-  // getAllBooks(allbookData: any){
-  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe(data=>{
-  //     for(let i=0; i<data.data.length; i++){
-  //       allbookData.push(data.data[i]);
-  //     }
-  //     console.log('here2');
-  //     console.log(allbookData);
-  //     console.log('here2');
-  //   });
-  // }
-  
-  
+ 
 
   getAllBooksObs(){
     return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe();
   }
 
+  observer={
+    next: x=> {
+      console.log('Observer got a next value: ' + x.data);
+      this.getbooksprovider=x.data;
+    },
+    error: err => console.error('Observer got an error: ' + err),
+    complete: () => {
+      console.log('Observer got a complete notification');
+      console.log(this.getbooksprovider);
+    },
+  }
+
+  getAllBooks(){
+    console.log("Provider going to getAllBooks");
+    this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe(this.observer)
+    console.log('done');
+  }
 
 
-  // getAllBooks(){
-  //   console.log("Provider going to getAllBooks");
-  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords');
-  // }
-    
-
-  // getAllBooks(){
-
-  //   console.log("Provider going to getAllBooks");
-  //   return this.http.get<Bookrecord>(this.tempURL+'getallrecords');
-  // }
 
   getTotalTime(totalTime: any){
     console.log("Provider going to getTotalHours");
@@ -79,7 +72,6 @@ export class DataProvider {
         totalTime.pop();
       }
       totalTime.push(data.totalhr);
-      //totalTime.push(data.totalmin);
 
       console.log(totalTime);
     })
@@ -108,7 +100,7 @@ export class DataProvider {
     return this.http.get(this.tempURL+'updategoals?newgoals='+newgoals).subscribe();
   }
 
-  getGoals(currentNum:any, currentHr:any){
+  getGoals(currentNum: any, currentHr: any){
     console.log('provider going to getGoals');
     return this.http.get<Goals>(this.tempURL+'getgoals').subscribe(data=>{
       while(currentNum.length>0){

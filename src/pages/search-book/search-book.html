@@ -15,6 +15,12 @@
 <ion-content padding>
   <ion-input placeholder="Enter Book Name" [(ngModel)]="bookname"></ion-input>
   <button ion-button class="button" full (click)="searchBook(bookname)">SEARCH</button>
+  <button id="toggleButton" ion-button class="button" full (click)="showBookList()">{{buttonText}}</button>
+
+  <ion-card id="bookList">
+      <h1>Books You Read</h1>
+    <ion-label *ngFor='let book of bookNames'><ion-icon name="book-outline"></ion-icon>{{ book }}</ion-label>
+  </ion-card>
 
   <ion-card *ngFor='let record of bookListData'>
     <h1>{{record['date']}}/{{record['month']}}/{{record['year']}}</h1>

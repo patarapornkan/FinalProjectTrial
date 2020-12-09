@@ -15,7 +15,7 @@ page-search-book {
     }
 
     .button{
-        background: #274c77 !important;
+        background: #274c77 ;
         font-family: 'Lato', sans-serif;
     }
 
@@ -40,6 +40,25 @@ page-search-book {
         padding: 15px;
         margin-left: 0px !important;
         width: 100% !important;
+    }
+
+    #bookList{
+        text-align: left;
+        // margin: 20px;
+        font-family: 'Lato', sans-serif;
+        color: #274c77;
+        font-weight: bold;
+        font-size: 16px;
+        display: none;
+    }
+
+    #toggleButton{
+        background-color: #a3cef1 !important;
+    }
+
+    ion-icon{
+        margin-right: 10px;
+        color: #6096ba;
     }
 
 

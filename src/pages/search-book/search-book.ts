@@ -16,16 +16,35 @@ import { DataProvider } from '../../providers/data/data'
 })
 export class SearchBookPage {
   bookListData:any=[];
+  bookNames=[];
+  bookNum=[];
+  isShowBookList:boolean=false;
+  buttonText:string= 'SHOW BOOKLIST';
   constructor(public myDataProvider: DataProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   searchBook(bookname: string){
     this.myDataProvider.findBook(bookname.toLowerCase(),this.bookListData);
+    // document.getElementById('bookList').style.display='none';
     console.log(this.bookListData);
   }
 
-  ionViewDidLoad() {
+  showBookList(){
+    this.isShowBookList= !this.isShowBookList;
+    if(this.isShowBookList){
+      this.buttonText='HIDE BOOKLIST';
+      document.getElementById('bookList').style.display='block';
+      console.log('change to show');
+    } else{
+      this.buttonText='SHOW BOOKLIST';
+      document.getElementById('bookList').style.display='none';
+      console.log('change to hide');
+    }
+  }
+
+  ionViewDidEnter() {
     console.log('ionViewDidLoad SearchBookPage');
+    this.myDataProvider.getBookNames(this.bookNames, this.bookNum);
   }
 
 }

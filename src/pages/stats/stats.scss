@@ -1,0 +1,38 @@
+page-stats {
+
+    ion-title{
+        background-color: #a3cef1 !important;
+        font-family: 'Lato', sans-serif;
+    }
+
+    #outer{
+        width:100%;
+        text-align: center;
+        background-color: #8b8c89;
+        margin:0px;
+    }
+
+    .inner{
+        display: inline-block;
+    }
+
+    .chart{
+        height: 500px;
+        padding: 20px;
+    }
+
+    button{
+        width: 100%;
+        font-family: 'Lato', sans-serif;
+        background-color: #8b8c89 !important;
+    }
+
+    #weekButton{
+        color: white;
+    }
+
+    #monButton{
+        color: #a3cef1;
+    }
+
+}

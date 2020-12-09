@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddReadingPage } from '../pages/add-reading/add-reading';
 import { SearchBookPage } from '../pages/search-book/search-book';
-import { HistoryPage } from '../pages/history/history';
+import { StatsPage } from '../pages/stats/stats';
 import { SettingPage } from '../pages/setting/setting';
 
 
@@ -17,8 +17,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
 import { HttpClientModule } from '@angular/common/http';
-import { AppResolverService } from '../providers/app-resolver/app-resolver.service';
-
 
 @NgModule({
   declarations: [
@@ -29,7 +27,7 @@ import { AppResolverService } from '../providers/app-resolver/app-resolver.servi
     TabsPage,
     AddReadingPage,
     SearchBookPage,
-    HistoryPage,
+    StatsPage,
     SettingPage
   ],
   imports: [
@@ -47,7 +45,7 @@ import { AppResolverService } from '../providers/app-resolver/app-resolver.servi
     TabsPage,
     AddReadingPage,
     SearchBookPage,
-    HistoryPage,
+    StatsPage,
     SettingPage
   ],
   providers: [
@@ -56,7 +54,6 @@ import { AppResolverService } from '../providers/app-resolver/app-resolver.servi
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
     DataProvider,
-    AppResolverService,
 
   ]
 })

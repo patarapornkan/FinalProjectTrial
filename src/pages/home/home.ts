@@ -8,9 +8,6 @@ import { Observable } from 'rxjs';
 import { Bookrecord } from '../../models/bookrecord.model';
 import { HttpClient } from '@angular/common/http';
 import { c } from '@angular/core/src/render3';
-import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
-import { AppResolverService } from '../../providers/app-resolver/app-resolver.service';
-
 
 @Injectable()
 
@@ -26,82 +23,47 @@ export class RoundPipe {
   templateUrl: 'home.html'
 })
 
+
 export class HomePage {
 
   public all_books: any;
 
-  @ViewChild('doughnutChart') doughnutChart;
+  @ViewChild('doughnutChartTime') doughnutChartTime;
+  @ViewChild('doughnutChartNum') doughnutChartNum;
+
   bars: any;
   colorArray: any;
 
   totalTime=[];
-  allBookData=[];
-  bookNames=[];
   bookNum=[];
   numGoal=[];
   hrGoal=[];
-  difference:number;
-  // public books$: Observable<any>;
-  whatiwant=[];
+  timePercent:number;
+  numPercent:number;
+  allBookData=[];
+  bookNames=[];
+  timeTillGoal:number;
+  numTillGoal: number;
+
   
-  constructor(public appResolve: AppResolverService, public myDataProvider: DataProvider, public http: HttpClient, public navCtrl: NavController, private httpClient: HttpClient) {
+  constructor(public myDataProvider: DataProvider, public http: HttpClient, public navCtrl: NavController, private httpClient: HttpClient) {
   
   }
 
 
-
-  ionViewDidLoad(){
-
-    
-    // this.http.get<Bookrecord>('http://862b14e0d4ac.ngrok.io/getallrecords').subscribe(data=>{
-    //   for(let i=0; i<data.data.length; i++){
-    //     this.whatiwant.push(data.data[i]);
-    //   }
-    //   console.log(this.whatiwant);
-    // });
-    // console.log(this.whatiwant);
-
-    
-    this.myDataProvider.getTotalTime(this.totalTime);
-    // this.myDataProvider.getAllBooks(this.allBookData);
-    console.log('here');
-    // this.myDataProvider.getAllBooks(this.allBookData);
-    console.log(this.allBookData.length);
-    for(let item of this.allBookData) {
-      console.log(item);
-      }
-    console.log('here');
-    //console.log(this.allBookData);
-    //console.log(this.totalTime);
-    //console.log(this.allBookData.length);
-    //console.log(this.allBookData);
-    //console.log(this.allBookData[0]);
-    //console.log(this.allBookData[0]);
+  ionViewDidEnter(){
+    this.myDataProvider.getTotalTime(this.totalTime);  
     this.myDataProvider.getBookNames(this.bookNames, this.bookNum);
     this.myDataProvider.getGoals(this.numGoal, this.hrGoal);
-    this.difference=this.hrGoal[0]-this.totalTime[0];
-    // this.all_books=this.httpClient.get('http://862b14e0d4ac.ngrok.io/getallbooks').subscribe(x=>{
-    //   this.all_books=x;
-    //   // console.log(this.all_books);
-    // })
-    // this.books$=this.myDataProvider.getAllBooksObs();
-    // console.log('again');
-    // console.log(this.all_books);
-
-  
-    // this.books$=this.myDataProvider.getAllBooks();
-    // console.log(this.books$);
-  
-    this.createDoughnutChart();
-    console.log(this.whatiwant);
+    this.getChartData();
   }
 
-  createDoughnutChart(){
-      this.bars= new Chart(this.doughnutChart.nativeElement,{
+  createDoughnutChartTime(timeSpentCh:number,timeGoalCh:number){
+      this.bars= new Chart(this.doughnutChartTime.nativeElement,{
       type: 'doughnut',
       data: {
         datasets: [{
-          data: [10, 30],
+          data: [timeSpentCh, timeGoalCh],
           backgroundColor: ['rgba(96, 150, 186)','rgba(231, 236, 239)'],
       }],
         labels:['Total Time Spent on Reading','Time until your Goal']
@@ -119,6 +81,58 @@ export class HomePage {
     })
   }
 
+  createDoughnutChartNum(bookNumCh:number,bookGoalCh:number){
+    this.bars= new Chart(this.doughnutChartNum.nativeElement,{
+    type: 'doughnut',
+    data: {
+      datasets: [{
+        data: [bookNumCh, bookGoalCh],
+        backgroundColor: ['rgba(96, 150, 186)','rgba(231, 236, 239)'],
+    }],
+      labels:['Total Time Spent on Reading','Time until your Goal']
 
+    },
+    options:{
+      cutoutPercentage: 70,
+      legend:{
+        display:false,
+      },
+      animation:{
+        animateRotate: true
+      }
+    }
+  })
+}
 
+  getChartData(){
+    this.http.get<Bookrecord>(this.myDataProvider.tempURL+'getdataprogresscharts').subscribe(this.observerChartData);
+  }
+
+  observerChartData={
+    next: data=>{
+      console.log(data.data);
+      let timeSpentCh:number=data.data['timeSpent'];
+      let timeGoalCh:number= data.data['hrGoal'];
+      this.timeTillGoal= timeGoalCh-timeSpentCh;
+      this.timePercent= data.data['timePercent'];
+      if(this.timePercent>100){
+        timeSpentCh=100;
+        this.timeTillGoal=0;
+      }
+      let bookNumCh:number= data.data['numRead'];
+      let bookGoalCh:number= data.data['numGoal'];
+      this.numTillGoal= bookGoalCh- bookNumCh;
+      this.numPercent= data.data['numPercent'];
+      if(this.numPercent>100){
+        bookNumCh=100;
+        this.numTillGoal=0;
+      }
+      this.createDoughnutChartTime(timeSpentCh,this.timeTillGoal);
+      this.createDoughnutChartNum(bookNumCh,this.numTillGoal);
+    },
+    error: err=>console.error('Observer got an error: '+err),
+    complete:()=>{
+      console.log('Observer got a complete notification');
+    }
+  }
 }
