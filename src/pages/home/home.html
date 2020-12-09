@@ -5,7 +5,62 @@
 </ion-header>
 
 <ion-content padding>
+  <!-- <ion-card *ngFor='let book of allBookData'>
+    <p>{{book.bookname}}</p>
+  </ion-card> -->
   <ion-card>
-    <p>{{totalhours}}</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <span class="topic">Time Spent on Reading</span> 
+        </ion-col>
+        <ion-col>
+          <span class="topic">Time until your GOAL</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <span class="bigNum">{{ totalTime[0]|number:'1.1-1' }}</span> <span>hrs</span>
+        </ion-col>
+        <ion-col>
+          <!-- <span class="bigNum">{{ hrGoal[0]-totalTime[0]|number:'1.1-1' }}</span> <span>hrs</span> -->
+          <span class="bigNum">{{ timeTillGoal }}</span> <span>hrs</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <canvas #doughnutChartTime></canvas>
+    <h1 class="percentage">{{timePercent}}%</h1>
   </ion-card>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <span class="topic">Number of books read</span>
+        </ion-col>
+        <ion-col>
+          <span class="topicSmall">Number of books until your GOAL</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <span class="bigNum">{{ bookNum[0] }}</span><span> books</span>
+        </ion-col>
+        <ion-col>
+          <span class="bigNum">{{numTillGoal}}</span><span> books</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <canvas #doughnutChartNum></canvas>
+    <h1 class="percentage">{{numPercent}}%</h1>
+  </ion-card>
+
+  <ion-card>
+    <div class="bookList">
+      <h1>Books You Read</h1>
+    <ion-label *ngFor='let book of bookNames'><ion-icon name="book-outline"></ion-icon>{{ book }}</ion-label>
+    </div>
+  </ion-card>
+
+
 </ion-content>

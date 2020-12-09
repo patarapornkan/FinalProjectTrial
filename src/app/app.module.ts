@@ -9,11 +9,14 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddReadingPage } from '../pages/add-reading/add-reading';
 import { SearchBookPage } from '../pages/search-book/search-book';
+import { StatsPage } from '../pages/stats/stats';
+import { SettingPage } from '../pages/setting/setting';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,12 +26,15 @@ import { HttpClientModule } from '@angular/common/http'
     HomePage,
     TabsPage,
     AddReadingPage,
-    SearchBookPage
+    SearchBookPage,
+    StatsPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+  
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,14 +44,17 @@ import { HttpClientModule } from '@angular/common/http'
     HomePage,
     TabsPage,
     AddReadingPage,
-    SearchBookPage
+    SearchBookPage,
+    StatsPage,
+    SettingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    DataProvider
+    DataProvider,
+
   ]
 })
 export class AppModule {}
