@@ -76,7 +76,9 @@ export class HomePage {
         },
         animation:{
           animateRotate: true
-        }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
       }
     })
   }
@@ -99,7 +101,9 @@ export class HomePage {
       },
       animation:{
         animateRotate: true
-      }
+      },
+      responsive: true,
+      maintainAspectRatio: false
     }
   })
 }

@@ -1,35 +1,28 @@
 page-home {
-    ion-title{
-        background-color: #a3cef1;
-        font-family: 'Lato', sans-serif;
-    }
 
     ion-card{
         border: solid 1px #e7ecef;
         border-radius: 10px !important;
-        padding: 0px;
-        margin: auto;
+        padding-bottom: 0 !important;
         margin-left: 0px !important;
         width: 100% !important;
         text-align: center;
     }
 
     ion-grid{
-        margin-bottom: 7px;
+        margin-bottom: 0px;
     }
 
     .percentage{
         text-align: center;
         position: relative;
-        bottom: 82px;
+        bottom: 70px;
         z-index: 1;
         font-size: 16px;
-        font-family: 'Lato', sans-serif;
 
     }
 
     .bigNum{
-        font-family: 'Lato', sans-serif;
         font-weight: bold;
         font-size: 35px;
     }
@@ -37,24 +30,18 @@ page-home {
     .topic{
         font-size: 20px;
         display: flex;
-        font-family: 'Lato', sans-serif;
         color: #636466;
     }
 
     .topicSmall{
         font-size: 16px;
         display: flex;
-        font-family: 'Lato', sans-serif;
         color: #636466;
     }
 
-    .bookList{
-        text-align: left;
-        margin: 20px;
-        font-family: 'Lato', sans-serif;
-        color: #274c77;
-        font-weight: bold;
-        font-size: 16px;
+    .chartContainer{
+        position: relative;
+        height: 125px;
     }
 
     canvas{
@@ -63,13 +50,7 @@ page-home {
         left: 0;
         right: 0;
         margin:auto;
-        margin-bottom: 5px;
         z-index: 0;
-    }
-
-    ion-icon{
-        margin-right: 10px;
-        color: #6096ba;
     }
 
     h1{

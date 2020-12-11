@@ -22,7 +22,19 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
+$tabs-background: #f8f8f8;
+$tabs-ios-tab-color-active: #274c77;
+$tabs-ios-tab-color-inactive: #6096ba;
+$tabs-ios-tab-font-weight: 1000;
+$font-family-base: 'Lato', sans-serif !important;
+$toolbar-ios-height: 60px;
+$toolbar-ios-background: #a3cef1;
+$toolbar-md-background: #a3cef1;
 
+ion-title{
+  position: relative;
+  top: 12px!important;
+}
 
 
 // Named Color Variables

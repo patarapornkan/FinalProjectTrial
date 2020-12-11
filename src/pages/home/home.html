@@ -1,13 +1,11 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>READIARY</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-card *ngFor='let book of allBookData'>
-    <p>{{book.bookname}}</p>
-  </ion-card> -->
+
   <ion-card>
     <ion-grid>
       <ion-row>
@@ -23,12 +21,13 @@
           <span class="bigNum">{{ totalTime[0]|number:'1.1-1' }}</span> <span>hrs</span>
         </ion-col>
         <ion-col>
-          <!-- <span class="bigNum">{{ hrGoal[0]-totalTime[0]|number:'1.1-1' }}</span> <span>hrs</span> -->
           <span class="bigNum">{{ timeTillGoal }}</span> <span>hrs</span>
         </ion-col>
       </ion-row>
     </ion-grid>
-    <canvas #doughnutChartTime></canvas>
+    <div class="chartContainer">
+      <canvas #doughnutChartTime></canvas>
+    </div>
     <h1 class="percentage">{{timePercent}}%</h1>
   </ion-card>
 
@@ -51,16 +50,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <canvas #doughnutChartNum></canvas>
+    <div class="chartContainer">
+      <canvas #doughnutChartNum></canvas>
+    </div>
+    
     <h1 class="percentage">{{numPercent}}%</h1>
   </ion-card>
-
-  <ion-card>
-    <div class="bookList">
-      <h1>Books You Read</h1>
-    <ion-label *ngFor='let book of bookNames'><ion-icon name="book-outline"></ion-icon>{{ book }}</ion-label>
-    </div>
-  </ion-card>
-
 
 </ion-content>
