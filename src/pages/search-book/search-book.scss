@@ -2,7 +2,7 @@ page-search-book {
     
     ion-title{
         background-color: #a3cef1 !important;
-        font-family: 'Lato', sans-serif;
+        // font-family: 'Lato', sans-serif;
     }
 
     ion-input{
@@ -11,27 +11,23 @@ page-search-book {
         padding-left: 15px;
         font-size: 16px;
         font-weight: bold;
-        font-family: 'Lato', sans-serif;
+        // font-family: 'Lato', sans-serif;
     }
 
     .button{
         background: #274c77 ;
-        font-family: 'Lato', sans-serif;
     }
 
     h1{
         color: #274c77;
-        font-family: 'Lato', sans-serif;
     }
 
     .memo{
         color:#6096ba !important;
-        font-family: 'Lato', sans-serif;
     }
 
     p{
         color: black !important;
-        font-family: 'Lato', sans-serif;
     }
 
     ion-card{
@@ -44,8 +40,6 @@ page-search-book {
 
     #bookList{
         text-align: left;
-        // margin: 20px;
-        font-family: 'Lato', sans-serif;
         color: #274c77;
         font-weight: bold;
         font-size: 16px;

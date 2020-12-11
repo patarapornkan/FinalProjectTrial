@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>stats</ion-title>
+    <ion-title>Statistics</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,20 +16,9 @@
       <div class="inner"><button id="monButton" ion-button (click)="showMonth()">By Month</button></div>
     </div>
     
-    <!-- <div class="main"></div> -->
     <div class="chart">
       <canvas #barChart></canvas>
-      <!-- <h1>Weekly</h1> -->
     </div>
-
-    <!-- <div class="month">
-      <div>
-        <canvas #monthChart *ngIf="showMonthChart || monthFirstLoad"></canvas>
-        <h1>Yearly</h1>
-      </div>
-    </div> -->
-
-
     
     
 </ion-content>

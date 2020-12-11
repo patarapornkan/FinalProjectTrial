@@ -25,7 +25,6 @@ export class SearchBookPage {
 
   searchBook(bookname: string){
     this.myDataProvider.findBook(bookname.toLowerCase(),this.bookListData);
-    // document.getElementById('bookList').style.display='none';
     console.log(this.bookListData);
   }
 

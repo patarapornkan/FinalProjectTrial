@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DataProvider {
-  public tempURL='http://908935ace8e5.ngrok.io/';
+  public tempURL='http://0e16cfdd8a6c.ngrok.io/';
   public getbooksprovider: any=[];
   
   constructor(public http: HttpClient) {
@@ -36,13 +36,7 @@ export class DataProvider {
       }
       for (let i=0; i<data.data.length; i++)
         bookListData.push(data.data[i]);
-        // console.log(bookListData);
     });
-  }
- 
-
-  getAllBooksObs(){
-    return this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe();
   }
 
   observer={
@@ -56,14 +50,6 @@ export class DataProvider {
       console.log(this.getbooksprovider);
     },
   }
-
-  getAllBooks(){
-    console.log("Provider going to getAllBooks");
-    this.http.get<Bookrecord>(this.tempURL+'getallrecords').subscribe(this.observer)
-    console.log('done');
-  }
-
-
 
   getTotalTime(totalTime: any){
     console.log("Provider going to getTotalHours");
